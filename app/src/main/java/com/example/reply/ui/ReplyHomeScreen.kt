@@ -58,6 +58,9 @@ import com.example.reply.data.MailboxType
 import com.example.reply.data.local.LocalAccountsDataProvider
 import com.example.reply.ui.utils.ReplyContentType
 import com.example.reply.ui.utils.ReplyNavigationType
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
+
 
 @Composable
 fun ReplyHomeScreen(
@@ -231,7 +234,12 @@ private fun ReplyBottomNavigationBar(
     navigationItemContentList: List<NavigationItemContent>,
     modifier: Modifier = Modifier
 ) {
-    NavigationBar(modifier = modifier) {
+
+    val bottomNavigationContentDescription = stringResource(R.string.navigation_bottom)
+
+    NavigationBar(modifier = Modifier
+        .fillMaxWidth()
+        .testTag(bottomNavigationContentDescription)) {
         for (navItem in navigationItemContentList) {
             NavigationBarItem(
                 selected = currentTab == navItem.mailboxType,
